@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://www.mendix.com/package/1.0/">
-    <clientModule name="HTMLSnippet" version="3.8.1" xmlns="http://www.mendix.com/clientModule/1.0/">
+    <clientModule name="JavaScriptSnippet" version="3.8.1" xmlns="http://www.mendix.com/clientModule/1.0/">
         <widgetFiles>
-            <widgetFile path="HTMLSnippet/HTMLSnippet.xml"/>
+            <widgetFile path="JavaScriptSnippet/JavaScriptSnippet.xml"/>
         </widgetFiles>
         <files>
-            <file path="HTMLSnippet/widget/"/>
+            <file path="JavaScriptSnippet/widget/"/>
         </files>
     </clientModule>
 </package>

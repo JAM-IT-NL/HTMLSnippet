@@ -214,7 +214,7 @@
       <file path="theme\styles\sass\lib\mobile\components\_mx-header.scss" />
       <file path="theme\styles\sass\lib\mobile\components\_tabcontainer.scss" />
       <file path="theme\styles\sass\lib\mobile\layouts\_base.scss" />
-      <file path="widgets\HTMLSnippet.mpk" />
+      <file path="widgets\JavaScriptSnippet.mpk" />
       <file path="widgets\MendixAppCloudNavigation.mpk" />
       <file path="widgets\MendixAppSwitcher.mpk" />
       <file path="widgets\MendixProfileMenu.mpk" />
