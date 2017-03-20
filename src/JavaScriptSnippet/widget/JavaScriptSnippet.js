@@ -50,23 +50,69 @@ define([
         executeCode: function() {
             logger.debug(this.id + ".executeCode");
             var external = this.contentsPath !== "" ? true : false;
-            
-            if (external) {
-                var scriptNode = document.createElement("script"),
-                    intDate = +new Date();
+            switch (this.contenttype) {
+                case "html":
+                    if (external) {
+                        new LinkPane({
+                            preload: true,
+                            loadingMessage: "",
+                            href: this.contentsPath,
+                            onDownloadError: function() {
+                                console.log("Error loading html path");
+                            }
+                        }).placeAt(this.domNode.id).startup();
+                    } else {
 
-                scriptNode.type = "text/javascript";
-                scriptNode.src = this.contentsPath + "?v=" + intDate.toString();
+                        mx.ui.action(this.contentsmf, {
+                            params: {
+                                applyto     : "selection",
+                                guids       : [this._contextObj.getGuid()]
+                            },
+                            callback     : lang.hitch(this, function (returnedString) {
+                                domStyle.set(this.domNode, {
+                                    "height": "auto",
+                                    "width": "100%",
+                                    "outline": 0
+                                });
 
-                domConstruct.place(scriptNode, this.domNode, "only");
-            } else {
-                if (this.contenttype === "jsjQuery") {
-                    require([
-                        "JavaScriptSnippet/lib/jquery-1.11.3"
-                    ], lang.hitch(this, this.evalJs));
-                } else {
-                    this.evalJs();
-                }
+                                domAttr.set(this.domNode, "style", this.style); // might override height and width
+                                var domNode = domConstruct.create("div", {
+                                    innerHTML: returnedString
+                                });
+                                domConstruct.place(domNode, this.domNode, "only");
+                            }),
+                            error        : lang.hitch(this, function(error) {
+                                alert(error.description);
+                            }),
+                            onValidation : lang.hitch(this, function(validations) {
+                                alert("There were " + validations.length + " validation errors");
+                            })
+                        }, this);   
+                        
+                        
+                    }
+                    break;
+
+                case "js":
+                case "jsjQuery":
+                    if (external) {
+                        var scriptNode = document.createElement("script"),
+                            intDate = +new Date();
+
+                        scriptNode.type = "text/javascript";
+                        scriptNode.src = this.contentsPath + "?v=" + intDate.toString();
+
+                        domConstruct.place(scriptNode, this.domNode, "only");
+                    } else {
+                        if (this.contenttype === "jsjQuery") {
+                            require([
+                                "HTMLSnippet/lib/jquery-1.11.3"
+                            ], lang.hitch(this, this.evalJs));
+                        } else {
+                            this.evalJs();
+                        }
+                    }
+                    break;
             }
         },
 

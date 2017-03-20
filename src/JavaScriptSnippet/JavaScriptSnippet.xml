@@ -7,14 +7,15 @@
 
     <properties>
         <!-- content type -->
-        <property key="contenttype" type="enumeration" defaultValue="js">
+        <property key="contenttype" type="enumeration" defaultValue="html">
             <caption>Content Type</caption>
             <category>Behavior</category>
-            <description>Defines whether this widget provides a jQuery.
+            <description>Defines whether this widget provides a piece of HTML or a piece of JavaScript.
             </description>
             <enumerationValues>
+                <enumerationValue key="html">HTML</enumerationValue>
                 <enumerationValue key="js">JavaScript</enumerationValue>
-                <enumerationValue key="jsjQuery">JavaScript with jQuery</enumerationValue> 
+                <enumerationValue key="jsjQuery">JavaScript with jQuery</enumerationValue>
             </enumerationValues>
         </property>
 
